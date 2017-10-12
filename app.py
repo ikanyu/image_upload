@@ -13,10 +13,6 @@ app.config.update(dict(
     UPLOAD_FOLDER=os.path.dirname(os.path.abspath(__file__)) + '/uploads/'
 ))
 
-@app.route('/')
-def main():
-    return render_template('index.html')
-
 def allowed_file(filename):
     return '.' in filename and \
             filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -26,7 +22,7 @@ def upload():
     if 'file' not in request.files:
         return jsonify(
             {
-                'message': 'File is not uploaded'
+                'message': 'No file is not uploaded'
             }
         )
     file = request.files['file']
